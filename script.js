@@ -35,7 +35,7 @@ const btnRestart = document.getElementById("btnRestart");
 document.onload = startGame();
 
 function startGame() {
-  humanTurn = false;
+  humanTurn = true;
   result = "";
   currentPlayer = "";
   currentClass = classes[0];
@@ -61,7 +61,11 @@ function restart() {
 function runGame() {
   if (gameResult()) {
     messageElement.classList.add("show");
-    messageTextElement.innerText = `${result} Wins`;
+    if(result === "Tie"){
+      messageTextElement.innerText = `${result}`;
+    }else{
+      messageTextElement.innerText = `${result} Wins`;
+    }
   } else {
     if (humanTurn) {
       displayTurn.innerText = "Human Turn";
@@ -187,18 +191,17 @@ function bestMove() {
 }
 
 let scores = {
-  Player: -10,
-  Bot: 10,
+  Player: -1,
+  Bot: 1,
   Tie: 0,
 };
 
 function minimax(newBoard, isMaximizing) {
-    
-let scores = {
-  Player: -10,
-  Bot: 10,
-  Tie: 0,
-};
+  let scores = {
+    Player: -10,
+    Bot: 10,
+    Tie: 0,
+  };
   let newResult = checkWinner();
   if (newResult !== "") {
     return scores[newResult];
