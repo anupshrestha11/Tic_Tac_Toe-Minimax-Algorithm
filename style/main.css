@@ -1,0 +1,193 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.board {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+}
+
+.board .cell {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.board .cell:nth-child(1) {
+  border-top: none;
+}
+
+.board .cell:nth-child(2) {
+  border-top: none;
+}
+
+.board .cell:nth-child(3) {
+  border-top: none;
+}
+
+.board .cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.board .cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.board .cell:nth-child(7) {
+  border-bottom: none;
+}
+
+.board .cell:nth-child(8) {
+  border-bottom: none;
+}
+
+.board .cell:nth-child(9) {
+  border-bottom: none;
+}
+
+.board.x .cell:hover:not(.x):not(.o)::before, .board.x .cell:hover:not(.x):not(.o)::after {
+  content: "";
+  position: absolute;
+  width: calc(calc(100px * 0.75) * 0.15);
+  height: calc(100px * 0.75);
+  background-color: lightgray;
+}
+
+.board.x .cell:hover:not(.x):not(.o)::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.board.x .cell:hover:not(.x):not(.o)::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.board.o .cell:hover:not(.x):not(.o)::before, .board.o .cell:hover:not(.x):not(.o)::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.board.o .cell:hover:not(.x):not(.o)::before {
+  width: calc(100px * 0.75);
+  height: calc(100px * 0.75);
+  background-color: lightgray;
+}
+
+.board.o .cell:hover:not(.x):not(.o)::after {
+  width: calc(calc(100px * 0.75) * 0.7);
+  height: calc(calc(100px * 0.75) * 0.7);
+  background-color: #fff;
+}
+
+.cell.x {
+  cursor: not-allowed;
+}
+
+.cell.x::before, .cell.x::after {
+  content: "";
+  position: absolute;
+  width: calc(calc(100px * 0.75) * 0.15);
+  height: calc(100px * 0.75);
+  background-color: red;
+}
+
+.cell.x::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.cell.x::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.cell.o {
+  cursor: not-allowed;
+}
+
+.cell.o::before, .cell.o::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.o::before {
+  width: calc(100px * 0.75);
+  height: calc(100px * 0.75);
+  background-color: blue;
+}
+
+.cell.o::after {
+  width: calc(calc(100px * 0.75) * 0.7);
+  height: calc(calc(100px * 0.75) * 0.7);
+  background-color: #fff;
+}
+
+.message {
+  display: none;
+  position: fixed;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000090;
+  font-size: 5rem;
+  color: #fff;
+}
+
+.message button {
+  font-size: 3rem;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 0.25em 0.5em;
+}
+
+.message button:hover {
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #fff;
+}
+
+.message.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=main.css.map */

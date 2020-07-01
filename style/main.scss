@@ -1,0 +1,136 @@
+$cellSize: 100px;
+$markSize: calc(#{$cellSize} * 0.75);
+@mixin x($color) {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: calc(#{$markSize} * 0.15);
+    height: $markSize;
+    background-color: $color;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+@mixin o($color) {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  &::before {
+    width: $markSize;
+    height: $markSize;
+    background-color: $color;
+  }
+  &::after {
+    width: calc(#{$markSize} * 0.7);
+    height: calc(#{$markSize} * 0.7);
+    background-color: #fff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  .cell {
+    width: $cellSize;
+    height: $cellSize;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        border-top: none;
+      }
+    }
+    &:nth-child(3n + 1) {
+      border-left: none;
+    }
+    &:nth-child(3n + 3) {
+      border-right: none;
+    }
+    @for $i from 7 through 9 {
+      &:nth-child(#{$i}) {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &.x {
+    .cell:hover:not(.x):not(.o) {
+      @include x(lightgray);
+    }
+  }
+  &.o {
+    .cell:hover:not(.x):not(.o) {
+      @include o(lightgray);
+    }
+  }
+}
+
+.cell.x {
+  cursor: not-allowed;
+  & {
+    @include x(red);
+  }
+}
+
+.cell.o {
+  cursor: not-allowed;
+
+  & {
+    @include o(blue);
+  }
+}
+
+.message {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000090;
+  font-size: 5rem;
+  color: #fff;
+  button {
+    font-size: 3rem;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 0.25em 0.5em;
+    &:hover {
+      color: #fff;
+      background-color: #000;
+      border: 1px solid #fff;
+    }
+  }
+  &.show {
+    display: flex;
+  }
+}
