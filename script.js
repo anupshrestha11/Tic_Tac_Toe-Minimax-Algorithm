@@ -15,7 +15,7 @@ const classes = ["x", "o"];
 
 const player = ["human", "bot"];
 
-let humanTurn;
+let humanTurn = true;
 let currentPlayer;
 let currentClass;
 let result;
@@ -32,10 +32,17 @@ const messageTextElement = document.getElementById("messageText");
 
 const btnRestart = document.getElementById("btnRestart");
 
+const humanScore = document.getElementById("humanScore");
+const botScore = document.getElementById("botScore");
+const drawScore = document.getElementById("drawScore");
+
+humanScore.textContent = 0;
+botScore.textContent = 0;
+drawScore.textContent = 0;
+
 document.onload = startGame();
 
 function startGame() {
-  humanTurn = true;
   result = "";
   currentPlayer = "";
   currentClass = classes[0];
@@ -61,9 +68,16 @@ function restart() {
 function runGame() {
   if (gameResult()) {
     messageElement.classList.add("show");
-    if(result === "Tie"){
+    if (result === "Tie") {
+      drawScore.textContent++;
       messageTextElement.innerText = `${result}`;
-    }else{
+    } else {
+      if (result.localeCompare("Bot") === 0) {
+        botScore.textContent++;
+      } else {
+        humanScore.textContent++;
+      }
+
       messageTextElement.innerText = `${result} Wins`;
     }
   } else {
@@ -74,7 +88,8 @@ function runGame() {
     } else {
       displayTurn.innerText = "Bot Turn";
       currentPlayer = player[1];
-      botPlay();
+      setTimeout(botPlay, 500);
+      // botPlay();
     }
   }
 }
@@ -146,12 +161,20 @@ function humanPlay() {
 }
 
 function handleClick(e) {
-  if (currentPlayer === "human") {
-    e.target.classList.add(currentClass);
-    let id = e.target.id;
-    BOARD[id - 1] = "human";
-    swapTurn();
-    runGame();
+  console.log(BOARD[e.target.id - 1].localeCompare("bot"));
+  if (
+    BOARD[e.target.id - 1].localeCompare("bot") === 0 ||
+    BOARD[e.target.id - 1].localeCompare("human") === 0
+  ) {
+    humanPlay();
+  } else {
+    if (currentPlayer === "human") {
+      e.target.classList.add(currentClass);
+      let id = e.target.id;
+      BOARD[id - 1] = "human";
+      swapTurn();
+      runGame();
+    }
   }
 }
 

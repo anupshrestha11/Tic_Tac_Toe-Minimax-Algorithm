@@ -43,6 +43,7 @@ $markSize: calc(#{$cellSize} * 0.75);
 
 body {
   margin: 0;
+  font-family: "Metal Mania", cursive;
 }
 
 .container {
@@ -58,7 +59,7 @@ body {
   .cell {
     width: $cellSize;
     height: $cellSize;
-    border: 1px solid #000;
+    border: 1px solid #218f76;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,7 +97,7 @@ body {
 .cell.x {
   cursor: not-allowed;
   & {
-    @include x(red);
+    @include x(#ff362e);
   }
 }
 
@@ -104,7 +105,7 @@ body {
   cursor: not-allowed;
 
   & {
-    @include o(blue);
+    @include o(#2ecc72);
   }
 }
 
@@ -132,5 +133,27 @@ body {
   }
   &.show {
     display: flex;
+  }
+}
+
+.player {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-decoration: underline;
+  color: #192a56;
+  font-weight: 700;
+}
+
+.scores {
+  position: fixed;
+  top: 17vw;
+  left: 30vw;
+  font-size: 1.3rem;
+  @media screen and (max-width: 500px) {
+    top: 5vw;
+    left: 5vw;
   }
 }

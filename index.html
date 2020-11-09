@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style/main.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="container">
-      <p id="displayTurn"></p>
+      <p id="displayTurn" class="player"></p>
       <div class="board" id="board">
         <div class="cell" id="1"></div>
         <div class="cell" id="2"></div>
@@ -24,6 +28,13 @@
         <div class="message-text" id="messageText">You Have Won</div>
         <button id="btnRestart">Restart</button>
       </div>
+    </div>
+
+    <div class="scores">
+      <h3>Scores</h3>
+      <div>Human: <span id="humanScore">0</span></div>
+      <div>bot: <span id="botScore">0</span></div>
+      <div>draw: <span id="drawScore">0</span></div>
     </div>
 
     <script src="./script.js"></script>

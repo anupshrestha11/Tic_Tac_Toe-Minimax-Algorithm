@@ -7,6 +7,7 @@
 
 body {
   margin: 0;
+  font-family: "Metal Mania", cursive;
 }
 
 .container {
@@ -27,7 +28,7 @@ body {
 .board .cell {
   width: 100px;
   height: 100px;
-  border: 1px solid #000;
+  border: 1px solid #218f76;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,7 +118,7 @@ body {
   position: absolute;
   width: calc(calc(100px * 0.75) * 0.15);
   height: calc(100px * 0.75);
-  background-color: red;
+  background-color: #ff362e;
 }
 
 .cell.x::before {
@@ -143,7 +144,7 @@ body {
 .cell.o::before {
   width: calc(100px * 0.75);
   height: calc(100px * 0.75);
-  background-color: blue;
+  background-color: #2ecc72;
 }
 
 .cell.o::after {
@@ -189,5 +190,30 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.player {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-decoration: underline;
+  color: #192a56;
+  font-weight: 700;
+}
+
+.scores {
+  position: fixed;
+  top: 17vw;
+  left: 30vw;
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 500px) {
+  .scores {
+    top: 5vw;
+    left: 5vw;
+  }
 }
 /*# sourceMappingURL=main.css.map */
