@@ -88,7 +88,7 @@ function runGame() {
     } else {
       displayTurn.innerText = "Bot Turn";
       currentPlayer = player[1];
-      setTimeout(botPlay, 500);
+      setTimeout(botPlay, 100);
       // botPlay();
     }
   }
